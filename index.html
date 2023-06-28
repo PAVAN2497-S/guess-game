@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> GUESS GAME</title>
+        <style>
+            div{
+                text-align: center;
+                background-color:azure;
+                font-style: italic;
+            }
+            body{
+                background-color:mistyrose;
+            }
+            p{
+                color:cornflowerblue;
+            }
+            h1{
+                    color:hotpink;
+                }   
+        
+            button{
+                color: cornflowerblue;
+                background-color:aliceblue;
+                border-bottom-width:thick;
+                border-color:hotpink;
+                border-radius:10%;                
+            }
+            #result{
+                color:steelblue;
+                font-style: normal;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>  
+        <div>
+            <h1> Guess Game</h1>
+            <p> please keep your console open </p>
+            <button id="start"> Start </button>
+        </div>
+            <h1 id="result">Result </h1>
+        
+        <script>
+            const start= document.getElementById('start')//1
+            const result = document.getElementById('result')
+
+            function startGame(){//3
+                const name = prompt('hey enter your name')
+                console.log(`hey ${name} let's start the Guess game buddy!!`)
+
+                const target = Math.ceil(Math.random()*100)
+                console.log(target)
+                const maxguess=10
+                let won = false
+
+                for(let i=0;i<maxguess;i++){
+                    const guess= prompt(`Guess my number - ${maxguess-i} chances left`)
+                    if(guess>target){
+                        console.log('Oops Your guess in too high')
+                    }else if(guess<target){
+                        console.log('Oops your guess is too low')
+                    }else if(parseInt(guess) === target){
+                        result.textContent= (`congrats ${name}. you guessed in ${i+1} guesses`)
+                        console.log(`congrats ${name}. you guessed in ${i+1} guesses`)
+                        won = true
+                        break
+                    }
+                }
+                if(!won){
+                    result.textContent=(`sorry you didn't have my number. My number was ${target}`)
+                    console.log(`sorry you didn't my number. My number was ${target}`)
+                }
+
+            }
+
+            start.addEventListener('click',function(){//2
+                startGame()
+            })
+        </script>
+
+    </body>
+</html>
